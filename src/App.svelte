@@ -9,45 +9,35 @@ import { pipe } from "./fxlib/fx/pipe";
 
 const { log, filter, reduce,map,curry,go} = fx
 
-// log([...protocol.iterable , ...protocol.iterable, ...generator.gen123()])
-// log([...generator.genOdd(101)])
-// log( filter (  a=>a==1 ,[1,2,3] ) )
+let updateState = ( {state, user_id, channelId}) => {
+  state[user_id] = channelId
+  return state
+}
 
-// log(log(go(
-// 	0,a=>a+117, a=>a+1111, log
-// )))
+let pageState = [
+	{user_id: "id1" , channelId: "ch1" , date: "날짜"},
+	{user_id: "id2" , channelId: "ch2" , date: "날짜"},
+	{user_id: "id3" , channelId: "ch3" , date: "날짜"},
+]
 
-// log(
-// 	reduce( (a,b)=>a+b ,map(p=>p.price,filter(p=>p.price < 30000 , data.product) ))
-// )
-
-
-// const f= pipe(
-// 	a => a+1,
-// 	a => a+2,
-// 	a => a+3,
-// )
-
-log(data.product)
 go(
-	data.product,
-	filter(p=>p.price < 40000 ),
-	map(p => p.price),
-	reduce((a,b)=>a+b),
+	pageState,
+	map( p=> { p.user_id == "id1" ? p.channelId= "ch2" : p ; return p }),
+	filter(p=>p.user_id == "id1"),
 	log
 )
 
-// log(f(3))
-//   const c_add = curry((a, b, c) => a + b + c);
-//   log(c_add(1, 2, 3));
-//   c_add(1)(2, 3);
-//   c_add(1, 2)(3);
-//   log(c_add(1)(2)(3));
+
+
+
+
+
 
 </script>
 	<main>
+		<h1>안녕</h1>
 
-		{#each info as { id,content }, i}
+		<!-- {#each info as { id,content }, i}
 			<li>
 				{id} : {content}
 			</li>
@@ -57,7 +47,7 @@ go(
 			<li>
 				{name} : {price} 
 			</li>
-		{/each}
+		{/each} -->
 	</main>
 <style>
 </style>
