@@ -9,6 +9,8 @@ import { pipe } from "./fxlib/fx/pipe";
 
 const { log, filter, reduce,map,curry,go} = fx
 
+log(sum)
+
 let updateState = ( {state, user_id, channelId}) => {
   state[user_id] = channelId
   return state
@@ -27,12 +29,6 @@ go(
 	log
 )
 
-
-
-
-
-
-
 </script>
 	<main>
 		<h1>안녕</h1>
@@ -47,7 +43,8 @@ go(
 			<li>
 				{name} : {price} 
 			</li>
-		{/each} -->
+		{/each} 
+		-->
 	</main>
 <style>
 </style>
