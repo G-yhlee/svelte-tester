@@ -4,47 +4,69 @@ import { info } from "./fxlib/info/info"
 import { generator } from "./fxlib/generator/generator"
 import { data } from "./fxlib/data/data"
 import { fx } from "./fxlib/fx/fx"
+import { fx2 } from "./fxlib/fx/fx2/fx2"
 import { pipe } from "./fxlib/fx/pipe";
+import { product } from "./fxlib/data/product";
 
 
 const { log, filter, reduce,map,curry,go} = fx
-
-log(sum)
+const { sum,_total_price,_total_quantity  } = fx2.custom_sum
 
 let updateState = ( {state, user_id, channelId}) => {
   state[user_id] = channelId
   return state
 }
 
-let pageState = [
-	{user_id: "id1" , channelId: "ch1" , date: "날짜"},
-	{user_id: "id2" , channelId: "ch2" , date: "날짜"},
-	{user_id: "id3" , channelId: "ch3" , date: "날짜"},
+let state = [
+	{user_id: 1 },
+	{user_id: 2 },
+	{user_id: 3 },
 ]
 
 go(
-	pageState,
-	map( p=> { p.user_id == "id1" ? p.channelId= "ch2" : p ; return p }),
-	filter(p=>p.user_id == "id1"),
+	// custom_sum.sum,
+	data,
 	log
 )
 
+// go(
+// 	pageState,
+// 	map( p=> { p.user_id == "id1" ? p.channelId= "ch2" : p ; return p }),
+// 	filter(p=>p.user_id == "id1"),
+// 	log
+// )
+
 </script>
-	<main>
-		<h1>안녕</h1>
+<table>
+	<tr>
+		<th>상품이름</th>
+		<th>가격 </th>
+		<th>수량</th>
+		<th>총 가격</th>
+	</tr>
+	{@html
+		go(
+			data.product,
+			sum(p=>`
+			<tr>
+			<td> ${ p.is_selected? `>${p.name}` : p.name}</td>	
+			<td>${p.price}</td>	
+			<td>${p.quantity}</td>	
+			<td>${p.quantity * p.price }</td>	
+			</tr>
+			`
+			)
+		)
+	}
+	<tr>
+		<td colspan="2"> 선택 합계</td>
+		<td> {_total_quantity(filter(p=>p.is_selected, data.product))}</td>
+		<td> {_total_price(filter(p=>p.is_selected, data.product))}</td>
+	</tr>
 
-		<!-- {#each info as { id,content }, i}
-			<li>
-				{id} : {content}
-			</li>
-		{/each}
 
-		{#each data.product as {price,name}, i}
-			<li>
-				{name} : {price} 
-			</li>
-		{/each} 
-		-->
-	</main>
+
+
+</table>
 <style>
 </style>

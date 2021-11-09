@@ -9,8 +9,9 @@ const sum = curry( (f,iter) => go(
     )
 )
 
-sum.total_quantity = sum(p=>p.quantity)
-sum.total_price = sum(p=>p.price * p.quantity)
-
-export default sum
+export  const  custom_sum  = {
+    sum,
+    _total_quantity: sum(p=>p.quantity),
+    _total_price : sum(p=>p.price * p.quantity)
+}
 

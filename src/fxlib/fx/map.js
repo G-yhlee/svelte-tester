@@ -1,7 +1,4 @@
 import { curry } from "./curry";
-
-
-
 export const map = curry((f,iter) => {
     let res = [];
     for(const a of iter) {
@@ -9,3 +6,5 @@ export const map = curry((f,iter) => {
     }
     return res;
 })
+
+// map(p => ({…p, user_id: 1}))
