@@ -29,13 +29,6 @@ go(
 	log
 )
 
-// go(
-// 	pageState,
-// 	map( p=> { p.user_id == "id1" ? p.channelId= "ch2" : p ; return p }),
-// 	filter(p=>p.user_id == "id1"),
-// 	log
-// )
-
 </script>
 <table>
 	<tr>
