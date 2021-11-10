@@ -8,26 +8,8 @@ import { fx2 } from "./fxlib/fx/fx2/fx2"
 import { pipe } from "./fxlib/fx/pipe";
 import { product } from "./fxlib/data/product";
 
-
 const { log, filter, reduce,map,curry,go} = fx
 const { sum,_total_price,_total_quantity  } = fx2.custom_sum
-
-let updateState = ( {state, user_id, channelId}) => {
-  state[user_id] = channelId
-  return state
-}
-
-let state = [
-	{user_id: 1 },
-	{user_id: 2 },
-	{user_id: 3 },
-]
-
-go(
-	// custom_sum.sum,
-	data,
-	log
-)
 
 </script>
 <table>
@@ -42,10 +24,10 @@ go(
 			data.product,
 			sum(p=>`
 			<tr>
-			<td> ${ p.is_selected? `>${p.name}` : p.name}</td>	
-			<td>${p.price}</td>	
-			<td>${p.quantity}</td>	
-			<td>${p.quantity * p.price }</td>	
+				<td>${ p.is_selected? `>${p.name}` : p.name}</td>	
+				<td>${p.price}</td>	
+				<td>${p.quantity}</td>	
+				<td>${p.quantity * p.price }</td>	
 			</tr>
 			`
 			)
@@ -56,10 +38,6 @@ go(
 		<td> {_total_quantity(filter(p=>p.is_selected, data.product))}</td>
 		<td> {_total_price(filter(p=>p.is_selected, data.product))}</td>
 	</tr>
-
-
-
-
 </table>
 <style>
 </style>
