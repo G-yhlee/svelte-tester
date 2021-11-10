@@ -8,22 +8,9 @@ import { fx2 } from "./fxlib/fx/fx2/fx2"
 import { pipe } from "./fxlib/fx/pipe";
 import { product } from "./fxlib/data/product";
 
-const { log, filter, reduce,map,curry,go , range,add,L} = fx
+const { log, filter, reduce,map,curry,go} = fx
 const { sum,_total_price,_total_quantity  } = fx2.custom_sum
 
-go(
-	L.range(3),
-	log,
-	reduce(add),
-	log
-)
-
-go(
-	range(4),
-	log,
-	reduce(add),
-	log
-)
 </script>
 <table>
 	<tr>
